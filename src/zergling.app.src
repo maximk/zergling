@@ -1,0 +1,12 @@
+{application, zergling,
+ [
+  {description, ""},
+  {vsn, "1"},
+  {registered, []},
+  {applications, [
+                  kernel,
+                  stdlib
+                 ]},
+  {mod, { zergling_app, []}},
+  {env, []}
+ ]}.

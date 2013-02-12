@@ -1,0 +1,17 @@
+<domain type='xen'>
+  <name>zergling</name>
+  <memory unit='MiB'>32</memory>
+  <currentMemory unit='MiB'>32</currentMemory>
+  <vcpu>1</vcpu>
+  <bootloader></bootloader>
+  <os>
+    <type>linux</type>
+    <kernel>/root/images/zergling.img</kernel>
+	<cmdline>-notify 192.168.0.2:9009 -ipaddr 192.168.0.10 -netmask 255.255.255.0 -gateway 192.168.0.1 -root /erlang -pz /zergling/ebin -pz /zergling/deps/cowboy/ebin -pz /zergling/deps/ranch/ebin -pz /zergling/deps/erlydtl/ebin -home /zergling -s zergling_app</cmdline>
+  </os>
+  <devices>
+    <interface type='ethernet'>
+      <script path='/etc/xen/scripts/vif-bridge'/>
+    </interface>
+  </devices>
+</domain>

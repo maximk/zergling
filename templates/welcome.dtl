@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<title>Zergling - spawned for each web request</title>
+
+<meta name="keywords" content="Erlang, Xen, Erlang VM, zero-footprint cloud,
+Ling, Erling, hypervisor, exokernel, operating system, cloud computing, elastic, system
+software, scalable software, scalability, build service" />
+
+<style type="text/css">
+<!--
+body {
+	font-family: Ubuntu, sans-serif;
+	font-size: 16px;
+}
+
+.content {
+	width: 1140px;
+	margin: 0 auto;
+}
+
+h3 {
+	font-size: 24px;
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+-->
+</style>
+
+</head>
+<body>
+
+<div class="content">
+<h3>Read carefully</h3>
+
+<p>This page was brought to you by a freshly spawned Xen instance. Your request
+was received XXXms ago. We spawned the instance within XXXms. It took another
+XXXms to generate the page you are viewing and send it to you. By the time
+you done reading this sentence, the instance will be gone.</p>
+
+<pre>
+{{ cmd_line }}
+</pre>
+
+<p>Stats, graphs go here. What else?</p>
+</div>
+
+</body>
+</html>
