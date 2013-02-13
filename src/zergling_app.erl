@@ -4,6 +4,8 @@
 
 -export([start/0]).
 
+-export([timestamp/0]).
+
 %% Application callbacks
 -export([start/2, stop/1]).
 
@@ -19,6 +21,16 @@ start() ->
 
 start(_StartType, _StartArgs) ->
 
+	TsAppStarted = timestamp(),
+	
+	%%
+	%% erlang:statistics(wall_clock) is called in the beginning of init:boot().
+	%%
+	{SinceEntryMs,SinceInitBootMs} = erlang:statistics(wall_clock),
+
+	TsLingStarted = TsAppStarted - SinceEntryMs / 1000,
+	TsBootStarted = TsAppStarted - SinceInitBootMs / 1000,
+
  	Dispatch = cowboy_router:compile([
 		{'_',[
 			{"/",toppage_handler,[]}
@@ -29,6 +41,8 @@ start(_StartType, _StartArgs) ->
 		[{port,8000}],
 		[{env,[{dispatch,Dispatch}]}]),
 
+	TsCowboyStarted = timestamp(),
+
 	case init:get_argument(notify) of
 	{ok,[[SpawnerSpot]]} ->
 		notify_spawner(SpawnerSpot);
@@ -36,12 +50,34 @@ start(_StartType, _StartArgs) ->
 		ok
 	end,
 
+	TsSpawnerNotified = timestamp(),
+
+	OtherVars = [{ts_ling_started,TsLingStarted},
+				 {ts_boot_started,TsBootStarted},
+				 {ts_app_started,TsAppStarted},
+				 {ts_cowboy_started,TsCowboyStarted},
+				 {ts_spawner_notified,TsSpawnerNotified}]
+
+		++ config_args(),
+
+	Pid = spawn(fun() ->
+		keeper(OtherVars)
+	end),
+	register(keeper, Pid),
+
 	zergling_sup:start_link().
 
 stop(_State) ->
     ok.
 
 %%------------------------------------------------------------------------------
+
+keeper(Vars) ->
+	receive
+	{get,From} ->
+		From ! {vars,Vars},
+		keeper(Vars)
+	end.
 
 notify_spawner(SpawnerSpec) ->
 	[SpawnerHost,SpawnerPort] = string:tokens(SpawnerSpec, ":"),
@@ -59,5 +95,13 @@ inet_parse_address(Host) ->
 		 list_to_integer(B),
 		 list_to_integer(C),
 		 list_to_integer(D)}}.
+
+timestamp() ->
+	{Mega,Secs,Micro} = now(),
+	Mega *1000000.0 + Secs + Micro / 1000000.0.
+
+config_args() ->
+	{ok,[[TRR]]} = init:get_argument(ts_req_received),
+	[{ts_req_received,list_to_float(TRR)}].
 
 %%EOF

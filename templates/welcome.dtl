@@ -25,6 +25,14 @@ h3 {
 	margin-top: 30px;
 	margin-bottom: 20px;
 }
+
+table {
+	border-collapse: collapse;
+}
+
+tr {
+	border-bottom: solid 1px #666;
+}
 -->
 </style>
 
@@ -35,9 +43,75 @@ h3 {
 <h3>Read carefully</h3>
 
 <p>This page was brought to you by a freshly spawned Xen instance. Your request
-was received XXXms ago. We spawned the instance within XXXms. It took another
-XXXms to generate the page you are viewing and send it to you. By the time
+was received {{ total_sec|floatformat:"1" }} seconds ago. Within this time we
+managed to create a new Xen instance running LING VM, boot a standard Erlang
+stack and execute an application that generated this page. By the time
 you done reading this sentence, the instance will be gone.</p>
+
+<p>The breakdown of what happened since we received your GET request follow:</p>
+
+<table>
+<thead>
+<tr>
+	<th style="width: 80px; text-align: center;">Code</th>
+	<th style="width: 100px;">Duration</th>
+	<th style="width: 500px;">Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align: center;">A</td>
+	<td style="text-align: center;">{{ int_ling_started|floatformat:"1" }} ms</td>
+	<td style="text-align: left;">An HTTP GET request received by nginx. The request is temporarily
+forwarded to 'spawner' application. The spawner asks Xen via libvirt daemon
+to spawn a new instance. The new instance gets created and is ready to boot.</td>
+</tr>
+<tr>
+	<td style="text-align: center;">B</td>
+	<td style="text-align: center;">{{ int_boot_started|floatformat:"1" }} ms</td>
+	<td style="text-align: left;">The LING VM starts to execute. It performs all preparatory steps needed
+to run Erlang code. Control reaches the main emulator loop. Erlang code
+starts to run.</td>
+</tr>
+<tr>
+	<td style="text-align: center;">C</td>
+	<td style="text-align: center;">{{ int_app_started|floatformat:"1" }} ms</td>
+	<td style="text-align: left;">init:boot() is entered and the standard Erlang boot sequence is
+performed. Many standard servers, such as code_server and application_master, are
+started. The boot sequence concludes with the launch of 'zergling_app'
+application as requested by a command line flag.</td>
+</tr>
+<tr>
+	<td style="text-align: center;">D</td>
+	<td style="text-align: center;">{{ int_cowboy_started|floatformat:"1" }} ms</td>
+	<td style="text-align: left;">zergling_app:start() is entered. A cowboy webserver is asked to listen
+for incoming requests on port 8000.</td>
+</tr>
+<tr>
+	<td style="text-align: center;">E</td>
+	<td style="text-align: center;">{{ int_spawner_notified|floatformat:"1" }} ms</td>
+	<td style="text-align: left;">The spawner is notified that the new instance is
+ready to process web requests.</td>
+</tr>
+<tr>
+	<td style="text-align: center;">F</td>
+	<td style="text-align: center;">{{ int_proxy_received|floatformat:"1" }} ms</td>
+	<td style="text-align: left;">The spawner replies to nginx with X-Accel-Redirect
+header citing the location of the instance. nginx proxies the original
+client connection to the new instance.</td>
+</tr>
+<tr>
+	<td style="text-align: center;">G</td>
+	<td style="text-align: center;">?</td>
+	<td style="text-align: left;">After rendering the page you are viewing the instance immediately shuts
+itself down. The spawner recongnises that the instance has gone away and notes that
+its IP address may be reused.</td>
+<tr>
+</tbody>
+</table>
+
+<p>The command line received by the instance:</p>
 
 <pre>
 {{ cmd_line }}
