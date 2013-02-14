@@ -40,13 +40,13 @@ tr {
 <body>
 
 <div class="content">
-<h3>Read carefully</h3>
+<h3>An instance per request</h3>
 
 <p>This page was brought to you by a freshly spawned Xen instance. Your request
 was received {{ total_sec|floatformat:"1" }} seconds ago. Within this time we
 managed to create a new Xen instance running LING VM, boot a standard Erlang
-stack and execute an application that generated this page. By the time
-you done reading this sentence, the instance will be gone.</p>
+stack, and execute an application that generated this page. By the time
+you are done reading this sentence, the instance will be gone.</p>
 
 <p>The breakdown of what happened since we received your GET request follow:</p>
 
@@ -117,7 +117,6 @@ its IP address may be reused.</td>
 {{ cmd_line }}
 </pre>
 
-<p>Stats, graphs go here. What else?</p>
 </div>
 
 </body>

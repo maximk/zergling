@@ -22,6 +22,18 @@ start() ->
 start(_StartType, _StartArgs) ->
 
 	TsAppStarted = timestamp(),
+
+	%% shutdown after timeout if client does not connect
+	case init:get_argument(shutdown_after) of
+	{ok,[[TStr]]} ->
+		Timeout = list_to_integer(TStr) *1000,
+		spawn(fun() ->
+			receive after Timeout -> ok end,
+			init:stop()
+		end);
+	error ->
+		ok
+	end,
 	
 	%%
 	%% erlang:statistics(wall_clock) is called in the beginning of init:boot().
