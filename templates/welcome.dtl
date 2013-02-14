@@ -9,22 +9,165 @@ Ling, Erling, hypervisor, exokernel, operating system, cloud computing, elastic,
 software, scalable software, scalability, build service" />
 
 <style type="text/css">
-<!--
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,address,cite,code,del,dfn,em,img,ins,q,small,strong,sub,sup,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{border:0;margin:0;padding:0}article,aside,figure,figure img,figcaption,hgroup,footer,header,nav,section,video,object{display:block}a img{border:0}figure{position:relative}figure img{width:100%}
+
+.container {
+padding-left: 20px;
+padding-right: 20px;
+}
+
+.row {
+width: 100%;
+max-width: 1140px;
+min-width: 755px;
+margin: 0 auto;
+overflow: hidden;
+}
+
+.onecol, .twocol, .threecol, .fourcol, .fivecol, .sixcol, .sevencol, .eightcol, .ninecol, .tencol, .elevencol {
+margin-right: 3.8%;
+float: left;
+min-height: 1px;
+}
+
+.row .onecol {
+width: 4.85%;
+}
+
+.row .twocol {
+width: 13.45%;
+}
+
+.row .threecol {
+width: 22.05%;
+}
+
+.row .fourcol {
+width: 30.75%;
+}
+
+.row .fivecol {
+width: 39.45%;
+}
+
+.row .sixcol {
+width: 48%;
+}
+
+.row .sevencol {
+width: 56.75%;
+}
+
+.row .eightcol {
+width: 65.4%;
+}
+
+.row .ninecol {
+width: 74.05%;
+}
+
+.row .tencol {
+width: 82.7%;
+}
+
+.row .elevencol {
+width: 91.35%;
+}
+
+.row .twelvecol {
+width: 100%;
+float: left;
+}
+
+.last {
+margin-right: 0px;
+}
+
+img, object, embed {
+max-width: 100%;
+}
+
+img {
+	height: auto;
+}
+
+@media only screen and (max-width: 1023px) {
+
+	body {
+	font-size: 0.8em;
+	line-height: 1.5em;
+	}
+	
+}
+
+/* Mobile */
+
+@media handheld, only screen and (max-width: 767px) {
+
+	body {
+	font-size: 16px;
+	-webkit-text-size-adjust: none;
+	}
+	
+	.row, body, .container {
+	width: 100%;
+	min-width: 0;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	}
+	
+	.row .onecol, .row .twocol, .row .threecol, .row .fourcol, .row .fivecol, .row .sixcol, .row .sevencol, .row .eightcol, .row .ninecol, .row .tencol, .row .elevencol, .row .twelvecol {
+	width: auto;
+	float: none;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-left: 20px;
+	padding-right: 20px;
+	}
+
+}
+
 body {
 	font-family: Ubuntu, sans-serif;
-	font-size: 16px;
-}
-
-.content {
-	width: 1140px;
-	margin: 0 auto;
-}
-
-h3 {
 	font-size: 24px;
-	margin-top: 30px;
-	margin-bottom: 20px;
+	background-color: #c190dc;
+	color: #fff;
 }
+
+a {
+	text-decoration: underline;
+	color: #fff;
+}
+
+.header {
+	height: 24px;
+}
+
+.time {
+	float: left;
+	width: 300px;
+	padding-right: 40px;
+	padding-bottom: 40px;
+	font-size: 48px;
+	text-align: right;
+	background: #c190dc url(http://localhost/images/lines1.png)
+					no-repeat top 36px right 12px;
+}
+
+.time-desc {
+	margin-top: 20px;
+}
+
+.links {
+	margin-top: 40px;
+	background: #c190dc url(http://localhost/images/erling1.png)
+					no-repeat center center;
+	height: 240px;
+}
+
+/*---*/
 
 table {
 	border-collapse: collapse;
@@ -33,11 +176,44 @@ table {
 tr {
 	border-bottom: solid 1px #666;
 }
--->
 </style>
 
 </head>
 <body>
+
+<div class="container">
+	<div class="row header">&nbsp;</div>
+
+	<div class="row">
+		<div class="time">
+			6 min
+		</div>
+		<p class="sevencol time-desc">is how long it takes to launch a Linux instance
+		to availability on Amazon EC2.</p>
+	</div>
+	<div class="row">
+		<div class="time">
+			50 sec
+		</div>
+		<p class="sevencol time-desc">is the time between power on and the lock screen
+		for an Android phone.</p>
+	</div>
+	<div class="row">
+		<div class="time">
+			{{ total_sec|floatformat:"1" }} sec
+		</div>
+		<p class="sevencol time-desc">ago is when we received your request. Within this
+			time we managed to create a new Xen instance,
+			boot it, and run an application that rendered
+			the page you are viewing. By the time you are
+			done reading this, the instance will be gone.</p>
+	</div>
+
+	<div class="row links">
+		This demo was made possible by <a href="erlangonxen.org">Erlang on Xen</a>
+	</div>
+</div>
+
 
 <div class="content">
 <h3>An instance per request</h3>
