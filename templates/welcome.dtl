@@ -136,6 +136,15 @@ body {
 	color: #fff;
 }
 
+h3 {
+	margin-top: 30px;
+	margin-bottom: 20px;
+}
+
+p {
+	margin-bottom: 20px;
+}
+
 a {
 	text-decoration: underline;
 	color: #fff;
@@ -162,19 +171,37 @@ a {
 
 .links {
 	margin-top: 40px;
-	background: #c190dc url(http://localhost/images/erling1.png)
-					no-repeat center center;
-	height: 240px;
+	font-size: 20px;
+	min-height: 240px;
 }
 
-/*---*/
+.erling {
+	background: #c190dc url(http://localhost/images/erling1.png)
+					no-repeat center center;
+	min-height: 180px;
+}
+
+.columns .onecol {
+	background-color: #fff;
+	height: 4px;
+}
+
+.details {
+	font-size: 20px;
+}
 
 table {
 	border-collapse: collapse;
+	margin-bottom: 30px;
 }
 
 tr {
-	border-bottom: solid 1px #666;
+	border-bottom: solid 1px #fff;
+}
+
+th, td {
+	padding-top: 4px;
+	padding-bottom: 8px;
 }
 </style>
 
@@ -210,28 +237,55 @@ tr {
 	</div>
 
 	<div class="row links">
-		This demo was made possible by <a href="erlangonxen.org">Erlang on Xen</a>
+		<div class="onecol"></div>
+		<div class="sevencol">
+			<p>Why is this important? The fast startup is the cornerstone of the
+			super-elastic clouds of the future. Think, personal Facebook,
+			personal Gmail, personal bank at the new level of privacy and
+			security.</p>
+
+			<br>
+
+			<p>This demo was made possible by <a href="erlangonxen.org">Erlang on Xen</a>.</p>
+		</div>
+		<div class="threecol last erling">
+		</div>
 	</div>
 </div>
 
+<div class="container columns">
+	<div class="row">
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol last"></div>
+	</div>
+</div>
 
-<div class="content">
-<h3>An instance per request</h3>
+<div class="container details">
+	<div class="row">
+		<div class="onecol"></div>
 
-<p>This page was brought to you by a freshly spawned Xen instance. Your request
-was received {{ total_sec|floatformat:"1" }} seconds ago. Within this time we
-managed to create a new Xen instance running LING VM, boot a standard Erlang
-stack, and execute an application that generated this page. By the time
-you are done reading this sentence, the instance will be gone.</p>
+		<div class="ninecol">
 
-<p>The breakdown of what happened since we received your GET request follow:</p>
+			<h3>Details for technically inclined</h3>
+
+<p>The breakdown of what happened during the request processing:</p>
 
 <table>
 <thead>
 <tr>
-	<th style="width: 80px; text-align: center;">Code</th>
-	<th style="width: 100px;">Duration</th>
-	<th style="width: 500px;">Notes</th>
+	<th style="width: 80px; text-align: center;">Phase</th>
+	<th style="width: 120px;">Duration</th>
+	<th>Notes</th>
 </tr>
 </thead>
 
@@ -240,8 +294,8 @@ you are done reading this sentence, the instance will be gone.</p>
 	<td style="text-align: center;">A</td>
 	<td style="text-align: center;">{{ int_ling_started|floatformat:"1" }} ms</td>
 	<td style="text-align: left;">An HTTP GET request received by nginx. The request is temporarily
-forwarded to 'spawner' application. The spawner asks Xen via libvirt daemon
-to spawn a new instance. The new instance gets created and is ready to boot.</td>
+forwarded to the 'spawner' application. The spawner asks Xen via libvirt daemon
+to launch a new instance. The new instance gets created and is ready to boot.</td>
 </tr>
 <tr>
 	<td style="text-align: center;">B</td>
@@ -293,6 +347,29 @@ its IP address may be reused.</td>
 {{ cmd_line }}
 </pre>
 
+<br>
+<br>
+
+		</div>	
+
+	</div>
+</div>
+
+<div class="container columns">
+	<div class="row">
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol"></div>
+		<div class="onecol last"></div>
+	</div>
 </div>
 
 </body>
