@@ -161,7 +161,7 @@ a {
 	padding-bottom: 40px;
 	font-size: 48px;
 	text-align: right;
-	background: #c190dc url(http://localhost/images/lines1.png)
+	background: #c190dc url(/images/lines1.png)
 					no-repeat top 36px right 12px;
 }
 
@@ -176,7 +176,7 @@ a {
 }
 
 .erling {
-	background: #c190dc url(http://localhost/images/erling1.png)
+	background: #c190dc url(/images/erling1.png)
 					no-repeat center center;
 	min-height: 180px;
 }
@@ -213,7 +213,7 @@ th, td {
 
 	<div class="row">
 		<div class="time">
-			6 min
+			300 sec
 		</div>
 		<p class="sevencol time-desc">is how long it takes to launch a Linux instance
 		to availability on Amazon EC2.</p>
@@ -231,7 +231,7 @@ th, td {
 		</div>
 		<p class="sevencol time-desc">ago is when we received your request. Within this
 			time we managed to create a new Xen instance,
-			boot it, and run an application that rendered
+			boot it, and run the application that rendered
 			the page you are viewing. By the time you are
 			done reading this, the instance will be gone.</p>
 	</div>
@@ -240,7 +240,7 @@ th, td {
 		<div class="onecol"></div>
 		<div class="sevencol">
 			<p>Why is this important? The fast startup is the cornerstone of the
-			super-elastic clouds of the future. Think, personal Facebook,
+			super-elastic clouds of the future. Think personal Facebook,
 			personal Gmail, personal bank at the new level of privacy and
 			security.</p>
 
