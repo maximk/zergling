@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<title>Zergling - spawned for each web request</title>
+<title>Zerg demo - spawned for each web request</title>
 
 <meta name="keywords" content="Erlang, Xen, Erlang VM, zero-footprint cloud,
 Ling, Erling, hypervisor, exokernel, operating system, cloud computing, elastic, system
@@ -246,7 +246,7 @@ th, td {
 
 			<br>
 
-			<p>This demo was made possible by <a href="erlangonxen.org">Erlang on Xen</a>.</p>
+			<p>This demo was made possible by <a href="http://erlangonxen.org">Erlang on Xen</a>.</p>
 		</div>
 		<div class="threecol last erling">
 		</div>
