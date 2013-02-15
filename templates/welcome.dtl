@@ -247,6 +247,19 @@ th, td {
 			<br>
 
 			<p>This demo was made possible by <a href="http://erlangonxen.org">Erlang on Xen</a>.</p>
+
+			<br>
+
+<a href="https://twitter.com/share" class="twitter-share-button"
+	data-url="http://try.erlangonxen.org/zerg" data-size="large"
+	data-related="erlang_on_xen" data-hashtags="trulyelastic">Tweet</a>
+<script>!function(d,s,id){var
+	js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+<script type="text/javascript"
+	src="https://apis.google.com/js/plusone.js"></script>
+<g:plusone href="http://try.erlangonxen/zerg"></g:plusone>
+
 		</div>
 		<div class="threecol last erling">
 		</div>
