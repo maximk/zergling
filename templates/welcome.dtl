@@ -172,7 +172,7 @@ a {
 .links {
 	margin-top: 40px;
 	font-size: 20px;
-	min-height: 240px;
+	min-height: 320px;
 }
 
 .erling {
