@@ -172,13 +172,18 @@ a {
 .links {
 	margin-top: 40px;
 	font-size: 20px;
-	min-height: 320px;
+	min-height: 280px;
 }
 
 .erling {
 	background: #c190dc url(/images/erling1.png)
 					no-repeat center center;
 	min-height: 180px;
+}
+
+.arrows .onecol {
+	background: transparent url(/images/down1.png) no-repeat top left;
+	height: 50px;
 }
 
 .columns .onecol {
@@ -239,10 +244,10 @@ th, td {
 	<div class="row links">
 		<div class="onecol"></div>
 		<div class="sevencol">
-			<p>Why is this important? The fast startup is the cornerstone of the
+			<p><b>Why is this important?</b> The fast startup is the cornerstone of the
 			super-elastic clouds of the future. Think personal Facebook,
 			personal Gmail, personal bank at the new level of privacy and
-			security.</p>
+			security... <a href="http://erlangonxen.org/cases">more</a></p>
 
 			<br>
 
@@ -273,7 +278,7 @@ s.parentNode.insertBefore(po, s);
 	</div>
 </div>
 
-<div class="container columns">
+<div class="container arrows">
 	<div class="row">
 		<div class="onecol"></div>
 		<div class="onecol"></div>
