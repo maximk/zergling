@@ -12,6 +12,7 @@
 start() ->
 	application:start(crypto),
 	application:start(ranch),
+	application:start(cowlib),
 	application:start(cowboy),
 	application:start(zergling).
 
@@ -49,7 +50,7 @@ start(_StartType, _StartArgs) ->
 		]}
 	]),
 
-	{ok,_} = cowboy:start_http(spawner, 8,
+	{ok,_} = cowboy:start_http(www, 8,
 		[{port,8000}],
 		[{env,[{dispatch,Dispatch}]}]),
 
@@ -96,7 +97,8 @@ notify_spawner(SpawnerSpec) ->
 	{ok,IpAddr} = inet_parse_address(SpawnerHost),
 	Port = list_to_integer(SpawnerPort),
 	{ok,Sock} = gen_tcp:connect(IpAddr, Port, [{active,false}]),
-	Packet = <<"POST /ready HTTP/1.0\r\n\r\n">>,
+	DomName = ling:domain_name(),
+	Packet = list_to_binary(["POST /ready/",DomName," HTTP/1.0\r\n\r\n"]),
 	ok  = gen_tcp:send(Sock, Packet),
 	{ok,_Data} = gen_tcp:recv(Sock, 0),
 	ok = gen_tcp:close(Sock).

@@ -1,0 +1,5 @@
+name = "zergling"
+kernel = "vmling"
+memory = 32
+extra = "-dhcp -ts_req_received 1000000"
+vif = [ "bridge=xenbr0" ]
