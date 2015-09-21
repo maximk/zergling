@@ -360,7 +360,7 @@ client connection to the new instance.</td>
 	<td style="text-align: center;">G</td>
 	<td style="text-align: center;">?</td>
 	<td style="text-align: left;">After rendering the page you are viewing the instance immediately shuts
-itself down. The spawner recongnises that the instance has gone away and notes that
+itself down. The spawner recognises that the instance has gone away and notes that
 its IP address may be reused.</td>
 <tr>
 </tbody>
